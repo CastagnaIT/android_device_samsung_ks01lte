@@ -58,9 +58,7 @@ BOARD_NFC_HAL_SUFFIX := msm8974
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
-ifeq ($(HOST_OS),linux)
 TARGET_USERIMAGES_USE_F2FS := true
-endif
 BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2390753280
@@ -80,6 +78,7 @@ BOARD_RECOVERY_SWIPE := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS := true
 TARGET_RECOVERY_FSTAB := device/samsung/ks01lte/rootdir/etc/fstab.qcom
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/msm_dwc3/f9200000.dwc3/gadget/lun%d/file
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/ks01lte
@@ -151,3 +150,33 @@ BOARD_SEPOLICY_UNION += \
     ueventd.te \
     vold.te \
     wpa.te
+
+# TWRP Recovery
+RECOVERY_VARIANT := twrp
+DEVICE_RESOLUTION := 1080x1920
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_NO_REBOOT_BOOTLOADER := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_NO_EXFAT := true
+TW_NO_EXFAT_FUSE := true
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_SAMSUNG := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p26"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+# The real path for this is /sys/devices/mdp.0/qcom,cmdss_fb_primary.173/leds/lcd-backlight/brightness but the comma doesn't compile correctly
+TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.173/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_INCLUDE_FB2PNG := true
+TW_TARGET_USES_QCOM_BSP := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_QCOM_RTC_FIX := true
