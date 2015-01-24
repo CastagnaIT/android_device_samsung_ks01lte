@@ -43,3 +43,6 @@ on property:recovery.perf.mode=0
 
 service chargeled /sbin/chargeled
     disabled
+
+service permissivemode /sbin/setenforce 0
+    oneshot
