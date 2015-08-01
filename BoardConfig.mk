@@ -25,7 +25,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 TARGET_KERNEL_SOURCE := kernel/samsung/ks01lte
 TARGET_KERNEL_CONFIG := cyanogenmod_ks01lte_defconfig
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000 --second_offset 0x00f00000
-BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
@@ -153,7 +153,8 @@ BOARD_SEPOLICY_UNION += \
 
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
-DEVICE_RESOLUTION := 1080x1920
+TW_THEME := portrait_hdpi
+HAVE_SELINUX := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_HAS_DOWNLOAD_MODE := true
@@ -166,11 +167,14 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_NO_EXFAT := true
 TW_NO_EXFAT_FUSE := true
 TW_INCLUDE_CRYPTO := true
-# The real path for this is /sys/devices/mdp.0/qcom,cmdss_fb_primary.173/leds/lcd-backlight/brightness but the comma doesn't compile correctly
-TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.173/leds/lcd-backlight/brightness"
+# The real path for this is /sys/devices/mdp.0/qcom,cmdss_fb_primary.181/leds/lcd-backlight/brightness but the comma doesn't compile correctly
+TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.181/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_INCLUDE_FB2PNG := true
 TW_TARGET_USES_QCOM_BSP := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-TARGET_RECOVERY_DEVICE_MODULES += chargeled
+TARGET_RECOVERY_DEVICE_MODULES += chargeled \
+									init.recovery.qcom.rc \
+									prebuilt_file_contexts \
+									twrp.fstab
