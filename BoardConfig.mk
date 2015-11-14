@@ -82,6 +82,9 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/ks01lte
 
+# Sensors
+TARGET_NO_SENSOR_PERMISSION_CHECK := true
+
 # Wifi
 BOARD_HAVE_SAMSUNG_WIFI := true
 BOARD_WLAN_DEVICE := bcmdhd
