@@ -1,4 +1,4 @@
-on boot
+on fs
     # Enable mass storage mounting
     write /sys/devices/msm_dwc3/f9200000.dwc3/gadget/lun0/cdrom 0
 
@@ -20,6 +20,9 @@ on boot
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+on boot
+    start chargeled
     setprop recovery.perf.mode 0
 
 on property:recovery.perf.mode=1
@@ -39,3 +42,7 @@ on property:recovery.perf.mode=0
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:healthd:s0
