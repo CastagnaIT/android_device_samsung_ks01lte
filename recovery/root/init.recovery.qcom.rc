@@ -22,6 +22,7 @@ on fs
     write /sys/devices/system/cpu/cpu3/online 0
 
 on boot
+    start chargeled
     setprop recovery.perf.mode 0
 
 on property:recovery.perf.mode=1
@@ -51,3 +52,7 @@ service logd /system/bin/logd
     socket logdr seqpacket 0666 logd logd
     socket logdw dgram 0222 logd logd
     group root system
+
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:healthd:s0
