@@ -177,7 +177,7 @@ PRODUCT_COPY_FILES += \
 
 # Radio shim
 PRODUCT_PACKAGES += \
-    libril_shim
+    libshim_ril
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
