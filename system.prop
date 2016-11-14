@@ -52,6 +52,9 @@ persist.radio.use_se_table_only=1
 ro.use_data_netmgrd=false
 persist.data.netmgrd.qos.enable=false
 
+# Storage
+ro.sys.sdcardfs=true
+
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
