@@ -69,6 +69,9 @@ ro.qc.sensors.step_detector=true
 # WiFi
 wifi.interface=wlan0
 
+# Tethering
+net.tethering.noprovisioning=true
+
 # WFD
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
