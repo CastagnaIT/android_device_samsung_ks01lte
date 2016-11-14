@@ -53,6 +53,9 @@ persist.radio.use_se_table_only=1
    # Data modules (For evolution RIL model)
 persist.data.netmgrd.qos.enable=true
 
+# Storage
+ro.sys.sdcardfs=true
+
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
