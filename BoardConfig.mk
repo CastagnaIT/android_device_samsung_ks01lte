@@ -116,6 +116,7 @@ BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
 BOARD_RIL_CLASS := ../../../device/samsung/ks01lte/ril
 
 # Camera
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_PROVIDES_CAMERA_HAL := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
