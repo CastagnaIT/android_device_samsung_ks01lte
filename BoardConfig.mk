@@ -35,9 +35,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
-# Build with Clang by default
-USE_CLANG_PLATFORM_BUILD := true
-
 # Audio
 USE_CUSTOM_AUDIO_POLICY := 1
 
