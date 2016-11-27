@@ -250,6 +250,9 @@ on post-fs-data
     chown system radio /sys/class/sec/sec_ir/ir_send
     chown system radio /sys/class/sec/sec_ir/ir_send_result
 
+    # Default MDNIE mode (cinema)
+    write /sys/class/mdnie/mdnie/mode 3
+
     # Permission for HALL IC
     chown system radio /sys/class/sec/sec_key/hall_detect
 
