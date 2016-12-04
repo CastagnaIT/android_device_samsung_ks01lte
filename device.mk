@@ -108,7 +108,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.msm8974
+    lights.MSM8974
 
 # IR
 PRODUCT_PACKAGES += \
