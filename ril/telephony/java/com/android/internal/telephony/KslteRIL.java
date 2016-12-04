@@ -305,24 +305,6 @@ public class KslteRIL extends RIL implements CommandsInterface {
 
     }
 
-    protected Object
-    responseFailCause(Parcel p) {
-        int numInts;
-        int response[];
-
-        numInts = p.readInt();
-        response = new int[numInts];
-        for (int i = 0 ; i < numInts ; i++) {
-            response[i] = p.readInt();
-        }
-        LastCallFailCause failCause = new LastCallFailCause();
-        failCause.causeCode = response[0];
-        if (p.dataAvail() > 0) {
-          failCause.vendorCause = p.readString();
-        }
-        return failCause;
-    }
-
     @Override
     public void getRadioCapability(Message response) {
         riljLog("getRadioCapability: returning static radio capability");
@@ -394,46 +376,6 @@ public class KslteRIL extends RIL implements CommandsInterface {
 
             send(rr);
         }
-    }
-
-    @Override
-    public void startLceService(int reportIntervalMs, boolean pullMode, Message response) {
-        riljLog("startLceService: not supported");
-        if (response != null) {
-            CommandException ex = new CommandException(
-                CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(response, null, ex);
-            response.sendToTarget();
-        }
-    }
-
-    /**
-    * @hide
-    */
-    public void getModemActivityInfo(Message response) {
-        riljLog("getModemActivityInfo: not supported");
-        if (response != null) {
-            CommandException ex = new CommandException(
-                CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(response, null, ex);
-            response.sendToTarget();
-        }
-    }
-
-    @Override
-    public void setUiccSubscription(int appIndex, boolean activate, Message result) {
-        // Note: This RIL request is also valid for SIM and RUIM (ICC card)
-        RILRequest rr = RILRequest.obtain(115, result);
-
-        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest)
-                + " appIndex: " + appIndex + " activate: " + activate);
-
-        rr.mParcel.writeInt(mInstanceId);
-        rr.mParcel.writeInt(appIndex);
-        rr.mParcel.writeInt(mInstanceId);
-        rr.mParcel.writeInt(activate ? 1 : 0);
-
-        send(rr);
     }
 
     /**
