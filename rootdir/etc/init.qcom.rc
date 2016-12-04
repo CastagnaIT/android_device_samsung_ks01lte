@@ -29,7 +29,7 @@ import init.qcom.usb.rc
 import init.target.rc
 
 on early-init
-    export LD_SHIM_LIBS /system/lib/libril.so|libshim_ril.so
+    export LD_SHIM_LIBS /system/lib/libril.so
 
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
@@ -1084,6 +1084,9 @@ on property:sys.boot_completed=1
     symlink /data/user_de/0/com.android.providers.telephony/databases/telephony.db /data/data/com.android.providers.telephony/databases/telephony.db
     symlink /data/user_de/0/com.android.providers.telephony/shared_prefs/preferred-apn.xml /data/data/com.android.providers.telephony/shared_prefs/preferred-apn.xml
 
+    # Symlink hack to fix getPreferredApnId open fail
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs/preferred-apn.xml /data/data/com.android.providers.telephony/shared_prefs/preferred-apn1.xml
+ 
 service charger /charger
     class charger
     seclabel u:r:healthd:s0

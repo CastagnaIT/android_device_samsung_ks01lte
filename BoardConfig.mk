@@ -116,6 +116,9 @@ BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
 # Hardware samsung
 BOARD_VENDOR := samsung
 
+# RIL
+BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_NEEDS_VIDEO_CALL_FIELD := true
 # RIL Class (for correct tech assignment)
 BOARD_RIL_CLASS := ../../../device/samsung/ks01lte/ril
 

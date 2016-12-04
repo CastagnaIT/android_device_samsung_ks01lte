@@ -27,8 +27,10 @@ persist.gps.qc_nlp_in_use=0
 ro.telephony.ril_class=KslteRIL
 rild.libargs=-d /dev/smd0
 rild.libpath=/system/lib/libsec-ril.so
-   # System property for number of mQANElements
-ro.ril.telephony.mqanelements=6
+ro.telephony.call_ring.multiple false
+ro.telephony.default_network=9
+ro.ril.telephony.mqanelements=4
+telephony.lteOnGsmDevice=1
 
    # Enable time services daemon
 persist.timed.enable=true
@@ -43,14 +45,13 @@ persist.radio.no_wait_for_card=1
 persist.radio.add_power_save=1
 
    # Control EONS (true = EONS enabled, false = EONS disabled)
-persist.eons.enabled=true
+persist.eons.enabled=false
 
    # Use CP SE13 Table
 persist.radio.use_se_table_only=1
 
    # Data modules (For evolution RIL model)
-ro.use_data_netmgrd=false
-persist.data.netmgrd.qos.enable=false
+persist.data.netmgrd.qos.enable=true
 
 # Storage
 ro.sys.sdcardfs=true
