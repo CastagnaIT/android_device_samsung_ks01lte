@@ -117,6 +117,9 @@ TARGET_RIL_VARIANT := caf
 # RIL Class (for correct tech assignment)
 BOARD_RIL_CLASS := ../../../device/samsung/ks01lte/ril
 
+# ConsumerIr
+BOARD_IR_HAS_ONE_FREQ_RANGE := true
+
 # Camera
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_PROVIDES_CAMERA_HAL := true
