@@ -116,8 +116,14 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # CMHW
 BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw
 
+# Hardware samsung
+BOARD_VENDOR := samsung
+
 # RIL Class (for correct tech assignment)
 BOARD_RIL_CLASS := ../../../device/samsung/ks01lte/ril
+
+# ConsumerIr
+BOARD_IR_HAS_ONE_FREQ_RANGE := true
 
 # Camera
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
