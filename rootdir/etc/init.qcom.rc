@@ -255,6 +255,7 @@ on post-fs-data
 
     # Permission for HALL IC
     chown system radio /sys/class/sec/sec_key/hall_detect
+    chown system radio /sys/class/sec/sec_key/hall_irq_ctrl
 
     chown system camera /sys/class/flash/flash/flash_power
     chmod 660 /sys/class/flash/flash/flash_power
