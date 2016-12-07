@@ -55,18 +55,15 @@ public class KslteRIL extends RIL implements CommandsInterface {
     private static final int RIL_UNSOL_UICC_SUBSCRIPTION_STATUS_CHANGED_SAMSUNG = 1038;
 
     private AudioManager mAudioManager;
-    private boolean isGsm = false;
 
     public KslteRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         this(context, preferredNetworkType, cdmaSubscription, null);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 6);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
     }
 
     public KslteRIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 6);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
     }
 
@@ -159,46 +156,8 @@ public class KslteRIL extends RIL implements CommandsInterface {
 
             cardStatus.mApplications[i] = appStatus;
         }
-        // For Sprint LTE only SIM
-        if (appStatus != null
-                && numApplications == 1
-                && !isGsm
-                && appStatus.app_type == appStatus.AppTypeFromRILInt(2)) {
-            cardStatus.mApplications = new IccCardApplicationStatus[3];
-            cardStatus.mApplications[0] = appStatus;
-            cardStatus.mGsmUmtsSubscriptionAppIndex = 0;
-            cardStatus.mCdmaSubscriptionAppIndex = 1;
-            cardStatus.mImsSubscriptionAppIndex = 2;
 
-            IccCardApplicationStatus appStatus2 = new IccCardApplicationStatus();
-            appStatus2.app_type       = appStatus2.AppTypeFromRILInt(4); // csim state
-            appStatus2.app_state      = appStatus.app_state;
-            appStatus2.perso_substate = appStatus.perso_substate;
-            appStatus2.aid            = appStatus.aid;
-            appStatus2.app_label      = appStatus.app_label;
-            appStatus2.pin1_replaced  = appStatus.pin1_replaced;
-            appStatus2.pin1           = appStatus.pin1;
-            appStatus2.pin2           = appStatus.pin2;
-            cardStatus.mApplications[cardStatus.mCdmaSubscriptionAppIndex] = appStatus2;
-
-            IccCardApplicationStatus appStatus3 = new IccCardApplicationStatus();
-            appStatus3.app_type       = appStatus3.AppTypeFromRILInt(5); // ims state
-            appStatus3.app_state      = appStatus.app_state;
-            appStatus3.perso_substate = appStatus.perso_substate;
-            appStatus3.aid            = appStatus.aid;
-            appStatus3.app_label      = appStatus.app_label;
-            appStatus3.pin1_replaced  = appStatus.pin1_replaced;
-            appStatus3.pin1           = appStatus.pin1;
-            appStatus3.pin2           = appStatus.pin2;
-            cardStatus.mApplications[cardStatus.mImsSubscriptionAppIndex] = appStatus3;
-        }
         return cardStatus;
-    }
-
-    @Override
-    public void setPhoneType(int phoneType){
-        super.setPhoneType(phoneType);
-        isGsm = (phoneType != RILConstants.CDMA_PHONE);
     }
 
     @Override
@@ -228,11 +187,9 @@ public class KslteRIL extends RIL implements CommandsInterface {
             dc.als = p.readInt();
             dc.isVoice = (0 != p.readInt());
 
-            if (!isGsm) {
             int call_type = p.readInt();            // Samsung CallDetails
             int call_domain = p.readInt();          // Samsung CallDetails
             String csv = p.readString();            // Samsung CallDetails
-            }
 
             dc.isVoicePrivacy = (0 != p.readInt());
             dc.number = p.readString();
