@@ -29,7 +29,7 @@ rild.libargs=-d /dev/smd0
 rild.libpath=/system/lib/libsec-ril.so
 ro.telephony.call_ring.multiple false
 ro.telephony.default_network=9
-ro.ril.telephony.mqanelements=4
+ro.ril.telephony.mqanelements=6
 telephony.lteOnGsmDevice=1
 
    # Enable time services daemon
