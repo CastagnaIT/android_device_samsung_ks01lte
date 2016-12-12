@@ -36,7 +36,6 @@ BOARD_KERNEL_SEPARATED_DT := true
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 
 # Audio
-BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
@@ -118,6 +117,7 @@ BOARD_VENDOR := samsung
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
+TARGET_RIL_VARIANT := caf
 # RIL Class (for correct tech assignment)
 BOARD_RIL_CLASS := ../../../device/samsung/ks01lte/ril
 
