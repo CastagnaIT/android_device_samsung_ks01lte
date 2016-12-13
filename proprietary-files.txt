@@ -80,7 +80,7 @@ vendor/lib/libscale.so
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
-#  Radio
+# Radio
 bin/efsks
 bin/ks
 bin/qcks
