@@ -303,6 +303,9 @@ on boot
 
     # for BT MAC address
     mkdir /efs/bluetooth 0775 radio system
+    # if already exist
+    chown radio system /efs/bluetooth
+    chmod 0775 /efs/bluetooth
 
     # For WiFi
     chown wifi wifi /dev/rfkill
@@ -870,6 +873,12 @@ on boot
     chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
+
+    # DualWave
+    chown system system /sys/kernel/DualWave/sound/DUALWAVE_CONFIG
+
+    # SSWAP
+    write /proc/sys/vm/swappiness 130
 
     # Sensors
     chown system system /efs/prox_cal

@@ -113,7 +113,7 @@
 /dev/msm_vidc_dec_sec     0660   system     audio
 /dev/msm_vidc_enc         0660   system     audio
 /dev/msm_rotator          0660   system     system
-/dev/hw_random            0660   system     system
+/dev/hw_random            0660   root       root
 /dev/adsprpc-smd          0664   system     system
 
 #permissions for audio
@@ -164,9 +164,6 @@
 # NFC
 /dev/bcm2079x             0600   nfc         nfc
 /dev/pn547                0660   nfc         nfc
-
-# Vibrator
-/dev/tspdrv               0660   root        shell
 
 # sensors
 /sys/devices/i2c-12/12-*  pollrate_ms 0664 system system
