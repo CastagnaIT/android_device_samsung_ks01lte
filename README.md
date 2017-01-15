@@ -1,4 +1,4 @@
-Copyright 2016 - The CyanogenMod Project
+Copyright 2016 - LineageOS Project
 
 Device configuration for Galaxy S4 LTE-A (GT-I9506)
 =====================================
@@ -18,4 +18,4 @@ Display | 1080 x 1920 pixels, Super AMOLED
 Camera  | 13 MP, 4128 x 3096 pixels
 Release Date | Q3 2013
 
-![Galaxy S4](http://wiki.cyanogenmod.org/images/thumb/d/d0/Ks01lte.png/317px-Ks01lte.png "Galaxy S4 LTE-A")
+![Galaxy S4](http://wiki.lineageos.org/images/thumb/d/d0/Ks01lte.png/317px-Ks01lte.png "Galaxy S4 LTE-A")
