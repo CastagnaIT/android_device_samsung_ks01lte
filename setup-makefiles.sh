@@ -43,7 +43,11 @@ write_headers
 
 write_makefiles "$MY_DIR"/proprietary-files.txt
 
-printf '\n%s\n' "\$(call inherit-product, vendor/qcom/binaries/msm8974/graphics/graphics-vendor.mk)" >> "$PRODUCTMK"
+if [ -s "$CM_ROOT"/vendor/qcom/binaries/msm8974/graphics/graphics-vendor.mk ]; then
+    printf '\n%s\n' "\$(call inherit-product, vendor/qcom/binaries/msm8974/graphics/graphics-vendor.mk)" >> "$PRODUCTMK"
+else
+    write_makefiles "$MY_DIR"/../../qcom/common/extractors/graphics-msm8974.txt
+fi
 
 # Finish
 write_footers
