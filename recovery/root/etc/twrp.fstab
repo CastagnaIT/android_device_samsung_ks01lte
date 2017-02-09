@@ -11,4 +11,4 @@
 /modem         emmc      /dev/block/platform/msm_sdcc.1/by-name/modem		  flags=backup=1;display="Modem";fsflags=ro
 /firmware      vfat      /dev/block/platform/msm_sdcc.1/by-name/apnhlos       flags=backup=1;subpartitionof=/modem;mounttodecrypt;fsflags=ro
 /preload       ext4      /dev/block/platform/msm_sdcc.1/by-name/hidden        flags=backup=1;display="Preload";wipeingui
-/misc          emmc      /dev/block/platform/msm_sdcc.1/by-name/pad
+/misc          emmc      /dev/block/platform/msm_sdcc.1/by-name/fota
