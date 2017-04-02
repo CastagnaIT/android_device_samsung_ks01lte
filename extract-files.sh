@@ -55,8 +55,4 @@ setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC"
 
-if [ ! -s "$CM_ROOT"/vendor/qcom/binaries/msm8974/graphics/graphics-vendor.mk ]; then
-    extract "$CM_ROOT"/device/qcom/common/extractors/graphics-msm8974.txt "$SRC"
-fi
-
 "$MY_DIR"/setup-makefiles.sh
