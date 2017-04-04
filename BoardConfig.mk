@@ -97,7 +97,7 @@ TARGET_RECOVERY_DEVICE_DIRS := device/samsung/ks01lte
 TARGET_RECOVERY_DEVICE_MODULES += chargeled
 # Encryption support
 TW_INCLUDE_CRYPTO := true
-TARGET_HW_DISK_ENCRYPTION := true
+TARGET_HW_DISK_ENCRYPTION := false
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 # Asian region languages
 TW_EXTRA_LANGUAGES := true
