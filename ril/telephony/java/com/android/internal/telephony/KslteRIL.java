@@ -67,6 +67,24 @@ public class KslteRIL extends RIL implements CommandsInterface {
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
     }
 
+    private void
+    fixNitz(Parcel p) {
+        int dataPosition = p.dataPosition();
+        String nitz = p.readString();
+        long nitzReceiveTime = p.readLong();
+
+        String[] nitzParts = nitz.split(",");
+        if (nitzParts.length >= 4) {
+            // 0=date, 1=time+zone, 2=dst, 3(+)=garbage that confuses ServiceStateTracker
+            nitz = nitzParts[0] + "," + nitzParts[1] + "," + nitzParts[2];
+            p.setDataPosition(dataPosition);
+            p.writeString(nitz);
+            p.writeLong(nitzReceiveTime);
+            // The string is shorter now, drop the extra bytes
+            p.setDataSize(p.dataPosition());
+        }
+    }
+
     @Override
     public void
     dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
@@ -272,10 +290,13 @@ public class KslteRIL extends RIL implements CommandsInterface {
 
         switch(response) {
             // SAMSUNG STATES
+            case RIL_UNSOL_NITZ_TIME_RECEIVED:
+                fixNitz(p);
+                break;
             case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED:
                 ret = responseVoid(p);
                 break;
-           case RIL_UNSOL_DEVICE_READY_NOTI:
+            case RIL_UNSOL_DEVICE_READY_NOTI:
                 ret = responseVoid(p);
                 break;
             case RIL_UNSOL_RESPONSE_HANDOVER:
