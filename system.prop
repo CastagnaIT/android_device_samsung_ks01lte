@@ -1,10 +1,15 @@
+# Art
+dalvik.vm.dex2oat-filter=speed
+dalvik.vm.dex2oat-swap=false
+
 # Audio
 persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
+qcom.hw.aac.encoder=true
 ro.qc.sdk.audio.fluencetype=fluence
 use.dedicated.device.for.voip=true
-media.aac_51_output_enabled=true
+use.voice.path.for.pcm.voip=true
 
 # Display
 ro.hdcp2.rx=tz
@@ -13,32 +18,50 @@ ro.secwvk=144
 ro.sf.lcd_density=480
 
 # GPS
-persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1
+ro.qc.sdk.izat.premium_enabled=0
+ro.qc.sdk.izat.service_mask=0x0
+persist.gps.qc_nlp_in_use=0
 
 # Radio
-persist.data.netmgrd.qos.enable=true
-persist.radio.add_power_save=1
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.no_wait_for_card=1
-persist.eons.enabled=false
-persist.radio.use_se_table_only=1
-
+ro.telephony.ril_class=KslteRIL
 rild.libargs=-d /dev/smd0
 rild.libpath=/system/lib/libsec-ril.so
-ro.telephony.call_ring.multiple=false
+ro.telephony.call_ring.multiple false
+ro.telephony.default_network=9
+ro.ril.telephony.mqanelements=6
 telephony.lteOnGsmDevice=1
 
-#Simulate sdcard on /data/media
-persist.fuse_sdcard=true
+   # Enable time services daemon
+persist.timed.enable=true
+
+   # Keep SIM state on LPM mode
+persist.radio.apm_sim_not_pwdn=1
+
+   # Don't wait the card state for RADIO POWER request
+persist.radio.no_wait_for_card=1
+
+   # For sys info indication
+persist.radio.add_power_save=1
+
+   # Control EONS (true = EONS enabled, false = EONS disabled)
+persist.eons.enabled=false
+
+   # Use CP SE13 Table
+persist.radio.use_se_table_only=1
+
+   # Data modules (For evolution RIL model)
+persist.data.netmgrd.qos.enable=true
+
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
+
+# Camera
+camera2.portability.force_api=1
 
 # Pedometer
 ro.qc.sensors.step_counter=true
 ro.qc.sensors.step_detector=true
-
-# Recovery
-ro.cwm.forbid_format=/boot,/firmware,/firmware-modem
-ro.cwm.forbid_mount=/boot
 
 # WiFi
 wifi.interface=wlan0

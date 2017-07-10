@@ -182,7 +182,6 @@ static int write_leds(const struct led_config *led)
 
     char blink[32];
     int count, err;
-    int color;
 
     if (led == NULL)
         led = &led_off;
@@ -240,7 +239,7 @@ static int set_light_leds(struct light_state_t const *state, int type)
     default:
         return -EINVAL;
     }
-    
+
     led->color = state->color & 0x00ffffff;
 
     if (led->color > 0) {
